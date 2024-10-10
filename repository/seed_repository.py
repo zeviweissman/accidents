@@ -1,6 +1,6 @@
 import csv
 from datetime import datetime, date
-from database.connection import get_accidents_collection, get_day_collection, get_week_collection, get_month_collection, get_beats_collection
+from database.connection import get_accidents_collection, get_beats_collection
 import utils.csv_utils as u
 
 
@@ -17,14 +17,8 @@ def read_csv(csv_path):
 
 def init_accidents():
     accidents = get_accidents_collection()
-    days = get_day_collection()
-    weeks = get_week_collection()
-    month = get_month_collection()
     beats = get_beats_collection()
     accidents.drop()
-    days.drop()
-    weeks.drop()
-    month.drop()
     beats.drop()
 
     for row in read_csv(ACCIDENTS_CSV_PATH):
@@ -58,4 +52,3 @@ def init_accidents():
                     'total_accidents': 1
                 }})
 
-init_accidents()
