@@ -5,7 +5,7 @@ import utils.csv_utils as u
 
 
 ACCIDENTS_CSV_PATH = "C:\\Users\\1\\PycharmProjects\\crush-stats\\assets\\data.csv"
-
+BIG_DATA_PATH = "C:\\Users\\1\\Downloads\\Traffic_Crashes_Crashes.csv"
 
 
 def read_csv(csv_path):
@@ -21,7 +21,7 @@ def init_accidents():
     accidents.drop()
     beats.drop()
 
-    for row in read_csv(ACCIDENTS_CSV_PATH):
+    for row in read_csv(BIG_DATA_PATH):
         beat = row['BEAT_OF_OCCURRENCE']
         primary_cause = row['PRIM_CONTRIBUTORY_CAUSE']
         total_injuries = int(row['INJURIES_TOTAL']) if row['INJURIES_TOTAL'].isdecimal() else 0
