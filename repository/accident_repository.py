@@ -53,3 +53,35 @@ def get_total_accidents_by_beat_and_week(beat, week_date):
 
     )
 
+
+def get_accident_info_by_beat_grouped_by_primary_cause(beat):
+    return list(accidents.aggregate([
+        {
+            '$match': {
+                'beat': beat
+            }
+        },
+        {
+            '$group': {
+                '_id': '$primary_contributory_cause',
+                'count': {
+                    '$sum': 1
+                },
+                'total_injuries': {
+                    '$sum': '$total_injuries'
+                },
+                'total_fatal_injuries':{
+                    '$sum': '$fatal_injuries'
+                    }
+            }
+        },
+        {
+            '$project': {
+                'cause': '$_id',
+                '_id': False,
+                'total_fatal_injuries': 1,
+                'total_injuries': 1
+            }
+        }
+    ]))
+

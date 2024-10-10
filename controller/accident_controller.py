@@ -26,3 +26,7 @@ def get_total_accidents_by_beat_and_date(beat):
 def get_total_accidents_by_beat_and_week(beat):
     date = request.args.get('date')
     return jsonify(repos.get_total_accidents_by_beat_and_week(beat, date)), 200
+
+@accident_blueprint.route('/<beat>/cause', methods=['GET'])
+def get_accidents_by_beat_grouped_by_cause(beat):
+    return jsonify(repos.get_accident_info_by_beat_grouped_by_primary_cause(beat))
