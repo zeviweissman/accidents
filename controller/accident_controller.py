@@ -29,4 +29,9 @@ def get_total_accidents_by_beat_and_week(beat):
 
 @accident_blueprint.route('/<beat>/cause', methods=['GET'])
 def get_accidents_by_beat_grouped_by_cause(beat):
-    return jsonify(repos.get_accident_info_by_beat_grouped_by_primary_cause(beat))
+    return jsonify(repos.get_accident_info_by_beat_grouped_by_primary_cause(beat)), 200
+
+
+@accident_blueprint.route('/<beat>/injuries', methods=['GET'])
+def get_stats_about_injuries_by_beat(beat):
+    return jsonify(repos.get_stats_about_injuries_by_beat(beat)), 200
