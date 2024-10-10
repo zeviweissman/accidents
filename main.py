@@ -3,7 +3,7 @@ from controller.accident_controller import accident_blueprint
 
 def create_flask_app():
     app = Flask(__name__)
-    app.register_blueprint(accident_blueprint, url_prefix="/api")
+    app.register_blueprint(accident_blueprint, url_prefix="/api/accidents")
     return app
 
 
