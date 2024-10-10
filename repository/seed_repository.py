@@ -46,11 +46,16 @@ def init_accidents():
         if not beats.find_one({'beat': beat}):
             beats.insert_one(
                 {'beat': beat, 'total_accidents_by_date': {date: 1},
-                 'total_accidents_by_week': {week_date: 1}
+                 'total_accidents_by_week': {week_date: 1},
+                 'total_accidents': 1
                  })
         else:
             beats.update_one(
                 {'beat': beat},
-                {'$inc' : {f'total_accidents_by_date.{date}': 1,
-                  f'total_accidents_by_week.{week_date}': 1}})
+                {'$inc' : {
+                  f'total_accidents_by_date.{date}': 1,
+                  f'total_accidents_by_week.{week_date}': 1,
+                    'total_accidents': 1
+                }})
 
+init_accidents()
