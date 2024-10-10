@@ -18,3 +18,6 @@ def get_month_collection():
 
 def get_accidents_collection():
     return get_db_connection()['accidents']
+
+def get_beats_collection():
+    return get_db_connection()['beats']
